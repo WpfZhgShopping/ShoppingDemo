@@ -44,11 +44,11 @@
 - (void)setupAttributes:(UITabBarItem*)item{
     NSMutableDictionary *SelectAttrs = [NSMutableDictionary dictionary];
     SelectAttrs[NSForegroundColorAttributeName] = [[UIColor alloc]initWithRed:252/255.0 green:13/255.0 blue:103/255.0 alpha:1];
-    SelectAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:16];
+    SelectAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
     [item setTitleTextAttributes:SelectAttrs forState:UIControlStateSelected];
     NSMutableDictionary *normalAttrs =[NSMutableDictionary dictionary];
     normalAttrs[NSForegroundColorAttributeName]= [[UIColor alloc]initWithRed:113/255.0 green:109/255.0 blue:104/255.0 alpha:1];
-    normalAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:16];
+    normalAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
     [item setTitleTextAttributes:normalAttrs forState:UIControlStateNormal];
 }
 
