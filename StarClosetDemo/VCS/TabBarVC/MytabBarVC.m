@@ -27,30 +27,16 @@
 }
 
 - (void)createView {
-    UINavigationController *mainNav = [[UINavigationController alloc]initWithRootViewController:[MainVC new]];
-    UITabBarItem * mainItem = [[UITabBarItem alloc]initWithTitle:@"首页" image:[UIImage imageNamed:@"bottom_home_icon"] selectedImage:[UIImage imageNamed:@"bottom_home_icon_on"]];
-    mainNav.tabBarItem = mainItem;
-    [self setupAttributes:mainItem];
+   UINavigationController *mainNav =[self setTabItem:[MainVC class] withTitle:@"首页" withImage:@"bottom_home_icon" selectedImage:@"bottom_home_icon_on"];
     
-    UINavigationController *communityNav = [[UINavigationController alloc]initWithRootViewController:[CommunityViewController new]];
-    UITabBarItem * communityItem = [[UITabBarItem alloc]initWithTitle:@"社区" image:[UIImage imageNamed:@"bottom_bbs_icon"] selectedImage:[UIImage imageNamed:@"bottom_bbs_icon_on"]];
-    communityNav.tabBarItem = communityItem;
-    [self setupAttributes:communityItem];
+    UINavigationController *matchNav = [self setTabItem:[MatchViewController class] withTitle:@"搭配" withImage:@"bottom_dapei_icon" selectedImage:@"bottom_dapei_icon_on"];
     
-    UINavigationController *matchNav = [[UINavigationController alloc]initWithRootViewController:[MatchViewController new]];
-    UITabBarItem * matchItem = [[UITabBarItem alloc]initWithTitle:@"搭配" image:[UIImage imageNamed:@"bottom_dapei_icon"] selectedImage:[UIImage imageNamed:@"bottom_dapei_icon_on"]];
-    matchNav.tabBarItem = matchItem;
-    [self setupAttributes:matchItem];
+    UINavigationController *communityNav = [self setTabItem:[CommunityViewController class] withTitle:@"社区" withImage:@"bottom_bbs_icon" selectedImage:@"bottom_bbs_icon_on"];
     
-    UINavigationController *shoppingNav =[[UINavigationController alloc]initWithRootViewController:[ShoppingCarViewController new]];
-    UITabBarItem *shoppingItem = [[UITabBarItem alloc]initWithTitle:@"购物车" image:[UIImage imageNamed:@"bottom_shopping_icon"] selectedImage:[UIImage imageNamed:@"bottom_shopping_icon_on"]];
-    shoppingNav.tabBarItem = shoppingItem;
-    [self setupAttributes:shoppingItem];
+     UINavigationController *shoppingNav = [self setTabItem:[ShoppingCarViewController class] withTitle:@"购物车" withImage:@"bottom_shopping_icon" selectedImage:@"bottom_shopping_icon_on"];
     
-    UINavigationController *personNav = [[UINavigationController alloc]initWithRootViewController:[PersonInfoVC new]];
-    UITabBarItem *personItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:[UIImage imageNamed:@"bottom_like_icon"] selectedImage:[UIImage imageNamed:@"bottom_like_icon_on"]];
-    personNav.tabBarItem = personItem;
-    [self setupAttributes:personItem];
+    UINavigationController *personNav = [self setTabItem:[PersonInfoVC class] withTitle:@"我的" withImage:@"bottom_like_icon" selectedImage:@"bottom_like_icon_on"];
+
     self.viewControllers = @[mainNav,matchNav,communityNav,shoppingNav,personNav];
     
 }
@@ -66,7 +52,13 @@
     [item setTitleTextAttributes:normalAttrs forState:UIControlStateNormal];
 }
 
-- (void)
+- (UINavigationController*)setTabItem:(Class)VC withTitle:(NSString *)title withImage:(NSString*)image selectedImage:(NSString*)selectImage{
+    UINavigationController *Nav = [[UINavigationController alloc]initWithRootViewController:[VC new]];
+    UITabBarItem * Item = [[UITabBarItem alloc]initWithTitle:title  image:[UIImage imageNamed:image] selectedImage:[UIImage imageNamed:selectImage]];
+    Nav.tabBarItem = Item;
+    [self setupAttributes:Item];
+    return Nav;
+}
 
 
 
