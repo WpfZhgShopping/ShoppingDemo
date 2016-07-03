@@ -22,15 +22,6 @@
     self.window =[[UIWindow alloc]initWithFrame:kMainBounds];
     self.window.backgroundColor =[UIColor whiteColor];
     MytabBarVC *rootVC =[MytabBarVC new];
-//
-//    //引导界面
-//    IntroductionViewController *introduceVC = [IntroductionViewController new];
-//    [self.window addSubview:introduceVC.view];
-//    __weak IntroductionViewController *weakSelf = introduceVC;
-//    [introduceVC enterRootVC:^{
-//        [introduceVC.view removeFromSuperview];
-//        self.window.rootViewController = rootVC;
-//    }];
     self.window.rootViewController = rootVC;
     [self.window makeKeyAndVisible];
     return YES;
