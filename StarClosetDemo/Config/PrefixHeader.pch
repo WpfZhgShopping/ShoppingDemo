@@ -28,4 +28,5 @@
 #import "UIButton+Extension.h"
 #import "UIFont+Extension.h"
 #import "UIView+Extension.h"
+#import "UIPageControl+Extension.h"
 

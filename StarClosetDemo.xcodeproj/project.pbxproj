@@ -57,6 +57,11 @@
 		04433F021D28ECD200FB8C0E /* PersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04433F011D28ECD200FB8C0E /* PersonInfoVC.m */; };
 		04433F061D28F0B200FB8C0E /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04433F051D28F0B200FB8C0E /* MainVC.m */; };
 		04433F081D29522A00FB8C0E /* icon_class_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04433F071D29522A00FB8C0E /* icon_class_search@2x.png */; };
+		04467F3D1D29EDB10067DBC1 /* SearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04467F3C1D29EDB10067DBC1 /* SearchVC.m */; };
+		04467F401D29F24F0067DBC1 /* WFScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04467F3F1D29F24F0067DBC1 /* WFScrollView.m */; };
+		04467F431D29F42D0067DBC1 /* WPFHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04467F421D29F42D0067DBC1 /* WPFHttpManager.m */; };
+		04467F461D29F8B80067DBC1 /* WTopScrollModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04467F451D29F8B80067DBC1 /* WTopScrollModel.m */; };
+		04467F491D2A35120067DBC1 /* UIPageControl+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04467F481D2A35120067DBC1 /* UIPageControl+Extension.m */; };
 		4C93F64860360DE2691585DD /* libPods-StarClosetDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C867A9997C5A94F5FE6F65E /* libPods-StarClosetDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +141,16 @@
 		04433F041D28F0B200FB8C0E /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
 		04433F051D28F0B200FB8C0E /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
 		04433F071D29522A00FB8C0E /* icon_class_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_class_search@2x.png"; sourceTree = "<group>"; };
+		04467F3B1D29EDB10067DBC1 /* SearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchVC.h; sourceTree = "<group>"; };
+		04467F3C1D29EDB10067DBC1 /* SearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchVC.m; sourceTree = "<group>"; };
+		04467F3E1D29F24F0067DBC1 /* WFScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFScrollView.h; sourceTree = "<group>"; };
+		04467F3F1D29F24F0067DBC1 /* WFScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFScrollView.m; sourceTree = "<group>"; };
+		04467F411D29F42D0067DBC1 /* WPFHttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFHttpManager.h; sourceTree = "<group>"; };
+		04467F421D29F42D0067DBC1 /* WPFHttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPFHttpManager.m; sourceTree = "<group>"; };
+		04467F441D29F8B80067DBC1 /* WTopScrollModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTopScrollModel.h; sourceTree = "<group>"; };
+		04467F451D29F8B80067DBC1 /* WTopScrollModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTopScrollModel.m; sourceTree = "<group>"; };
+		04467F471D2A35120067DBC1 /* UIPageControl+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIPageControl+Extension.h"; sourceTree = "<group>"; };
+		04467F481D2A35120067DBC1 /* UIPageControl+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPageControl+Extension.m"; sourceTree = "<group>"; };
 		0E5A6FCD65DEF8821DCEFCE2 /* Pods-StarClosetDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarClosetDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarClosetDemo/Pods-StarClosetDemo.release.xcconfig"; sourceTree = "<group>"; };
 		139EB0224ADD056637297118 /* Pods-StarClosetDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarClosetDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StarClosetDemo/Pods-StarClosetDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		4C867A9997C5A94F5FE6F65E /* libPods-StarClosetDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StarClosetDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +232,8 @@
 				04433EBD1D28C68200FB8C0E /* UILabel+Extension.m */,
 				04433EB91D28C51600FB8C0E /* UIImage+Extension.h */,
 				04433EBA1D28C51600FB8C0E /* UIImage+Extension.m */,
+				04467F471D2A35120067DBC1 /* UIPageControl+Extension.h */,
+				04467F481D2A35120067DBC1 /* UIPageControl+Extension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -234,6 +251,8 @@
 		043FF4AE1D2807CB0094096B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04467F441D29F8B80067DBC1 /* WTopScrollModel.h */,
+				04467F451D29F8B80067DBC1 /* WTopScrollModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -245,6 +264,8 @@
 				04433EDE1D28CEB300FB8C0E /* NetRequestClass.m */,
 				04433EDF1D28CEB300FB8C0E /* RequestClient.h */,
 				04433EE01D28CEB300FB8C0E /* RequestClient.m */,
+				04467F411D29F42D0067DBC1 /* WPFHttpManager.h */,
+				04467F421D29F42D0067DBC1 /* WPFHttpManager.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -259,6 +280,8 @@
 		043FF4C11D2807CB0094096B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04467F3E1D29F24F0067DBC1 /* WFScrollView.h */,
+				04467F3F1D29F24F0067DBC1 /* WFScrollView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -409,6 +432,8 @@
 			children = (
 				04433F041D28F0B200FB8C0E /* MainVC.h */,
 				04433F051D28F0B200FB8C0E /* MainVC.m */,
+				04467F3B1D29EDB10067DBC1 /* SearchVC.h */,
+				04467F3C1D29EDB10067DBC1 /* SearchVC.m */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -580,7 +605,10 @@
 				04433ED21D28CA1D00FB8C0E /* IntroductionViewController.m in Sources */,
 				04433ECB1D28C9AE00FB8C0E /* CommunityViewController.m in Sources */,
 				04433EE21D28CEB300FB8C0E /* RequestClient.m in Sources */,
+				04467F431D29F42D0067DBC1 /* WPFHttpManager.m in Sources */,
+				04467F491D2A35120067DBC1 /* UIPageControl+Extension.m in Sources */,
 				04433EFE1D28D8FC00FB8C0E /* UIView+Extension.m in Sources */,
+				04467F401D29F24F0067DBC1 /* WFScrollView.m in Sources */,
 				04433EEA1D28D5D400FB8C0E /* BXTabBar.m in Sources */,
 				043FF4981D27C3D80094096B /* AppDelegate.m in Sources */,
 				04433EF91D28D6AC00FB8C0E /* UIBarButtonItem+Extension.m in Sources */,
@@ -590,6 +618,7 @@
 				04433EFA1D28D6AC00FB8C0E /* UIButton+Extension.m in Sources */,
 				04433EBE1D28C68200FB8C0E /* UILabel+Extension.m in Sources */,
 				04433ECE1D28C9C700FB8C0E /* ManStoreViewController.m in Sources */,
+				04467F461D29F8B80067DBC1 /* WTopScrollModel.m in Sources */,
 				04433EE11D28CEB300FB8C0E /* NetRequestClass.m in Sources */,
 				04433EEC1D28D5D400FB8C0E /* BXTabBarButton.m in Sources */,
 				04433EBB1D28C51600FB8C0E /* UIImage+Extension.m in Sources */,
@@ -597,6 +626,7 @@
 				04433EEB1D28D5D400FB8C0E /* BXTabBarBigButton.m in Sources */,
 				04433F021D28ECD200FB8C0E /* PersonInfoVC.m in Sources */,
 				04433ED61D28CA2E00FB8C0E /* MatchViewController.m in Sources */,
+				04467F3D1D29EDB10067DBC1 /* SearchVC.m in Sources */,
 				04433EFB1D28D6AC00FB8C0E /* UIFont+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

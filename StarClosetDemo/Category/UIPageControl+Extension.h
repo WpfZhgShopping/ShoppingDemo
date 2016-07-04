@@ -1,0 +1,14 @@
+//
+//  UIPageControl+Extension.h
+//  StarClosetDemo
+//
+//  Created by Mac on 16/7/4.
+//  Copyright © 2016年 Mac. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIPageControl (Extension)
+
++ (UIPageControl*)createPageControlWithFrame:(CGRect)frame numberOfPages:(NSInteger)number pageIndicatorTintColor:(UIColor*)color currentPageIndicatorTintColor:(UIColor*)currentColor;
+@end
