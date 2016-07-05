@@ -59,6 +59,11 @@
 		04433F081D29522A00FB8C0E /* icon_class_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04433F071D29522A00FB8C0E /* icon_class_search@2x.png */; };
 		0C5DDA441D29EEE300F69B2A /* CollocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DDA431D29EEE300F69B2A /* CollocationVC.m */; };
 		0C5DDA471D29EF0200F69B2A /* SpecialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DDA461D29EF0200F69B2A /* SpecialVC.m */; };
+		0C5DDA4F1D2A0EA200F69B2A /* UICollectionViewFlowWaterLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DDA4E1D2A0EA200F69B2A /* UICollectionViewFlowWaterLayout.m */; };
+		0C5DDA5A1D2A396300F69B2A /* zMatchNodel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DDA591D2A396300F69B2A /* zMatchNodel.m */; };
+		0C5DDA5D1D2A39B000F69B2A /* zMatchTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DDA5C1D2A39B000F69B2A /* zMatchTool.m */; };
+		0C5DDA701D2AA9D500F69B2A /* MatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DDA6E1D2AA9D500F69B2A /* MatchCell.m */; };
+		0C5DDA711D2AA9D500F69B2A /* MatchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DDA6F1D2AA9D500F69B2A /* MatchCell.xib */; };
 		4C93F64860360DE2691585DD /* libPods-StarClosetDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C867A9997C5A94F5FE6F65E /* libPods-StarClosetDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +147,15 @@
 		0C5DDA431D29EEE300F69B2A /* CollocationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollocationVC.m; sourceTree = "<group>"; };
 		0C5DDA451D29EF0200F69B2A /* SpecialVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialVC.h; sourceTree = "<group>"; };
 		0C5DDA461D29EF0200F69B2A /* SpecialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialVC.m; sourceTree = "<group>"; };
+		0C5DDA4D1D2A0EA200F69B2A /* UICollectionViewFlowWaterLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewFlowWaterLayout.h; sourceTree = "<group>"; };
+		0C5DDA4E1D2A0EA200F69B2A /* UICollectionViewFlowWaterLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewFlowWaterLayout.m; sourceTree = "<group>"; };
+		0C5DDA581D2A396300F69B2A /* zMatchNodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zMatchNodel.h; path = StarClosetDemo/VCS/MatchVC/zMatchNodel.h; sourceTree = SOURCE_ROOT; };
+		0C5DDA591D2A396300F69B2A /* zMatchNodel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zMatchNodel.m; path = StarClosetDemo/VCS/MatchVC/zMatchNodel.m; sourceTree = SOURCE_ROOT; };
+		0C5DDA5B1D2A39B000F69B2A /* zMatchTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zMatchTool.h; path = StarClosetDemo/VCS/MatchVC/zMatchTool.h; sourceTree = SOURCE_ROOT; };
+		0C5DDA5C1D2A39B000F69B2A /* zMatchTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zMatchTool.m; path = StarClosetDemo/VCS/MatchVC/zMatchTool.m; sourceTree = SOURCE_ROOT; };
+		0C5DDA6D1D2AA9D500F69B2A /* MatchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchCell.h; sourceTree = "<group>"; };
+		0C5DDA6E1D2AA9D500F69B2A /* MatchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchCell.m; sourceTree = "<group>"; };
+		0C5DDA6F1D2AA9D500F69B2A /* MatchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchCell.xib; sourceTree = "<group>"; };
 		0E5A6FCD65DEF8821DCEFCE2 /* Pods-StarClosetDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarClosetDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarClosetDemo/Pods-StarClosetDemo.release.xcconfig"; sourceTree = "<group>"; };
 		139EB0224ADD056637297118 /* Pods-StarClosetDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarClosetDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StarClosetDemo/Pods-StarClosetDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		4C867A9997C5A94F5FE6F65E /* libPods-StarClosetDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StarClosetDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,6 +254,8 @@
 		043FF4AE1D2807CB0094096B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0C5DDA581D2A396300F69B2A /* zMatchNodel.h */,
+				0C5DDA591D2A396300F69B2A /* zMatchNodel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -258,6 +274,8 @@
 		043FF4B71D2807CB0094096B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				0C5DDA5B1D2A39B000F69B2A /* zMatchTool.h */,
+				0C5DDA5C1D2A39B000F69B2A /* zMatchTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -280,6 +298,7 @@
 		043FF4DC1D280C8D0094096B /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0C5DDA4C1D2A0E8A00F69B2A /* Waterfall */,
 				043FF4DD1D280C8D0094096B /* Images */,
 			);
 			name = Resource;
@@ -368,6 +387,9 @@
 			children = (
 				04433ED41D28CA2E00FB8C0E /* MatchViewController.h */,
 				04433ED51D28CA2E00FB8C0E /* MatchViewController.m */,
+				0C5DDA6D1D2AA9D500F69B2A /* MatchCell.h */,
+				0C5DDA6E1D2AA9D500F69B2A /* MatchCell.m */,
+				0C5DDA6F1D2AA9D500F69B2A /* MatchCell.xib */,
 			);
 			path = MatchVC;
 			sourceTree = "<group>";
@@ -437,6 +459,15 @@
 				0C5DDA461D29EF0200F69B2A /* SpecialVC.m */,
 			);
 			path = SpecialVC;
+			sourceTree = "<group>";
+		};
+		0C5DDA4C1D2A0E8A00F69B2A /* Waterfall */ = {
+			isa = PBXGroup;
+			children = (
+				0C5DDA4D1D2A0EA200F69B2A /* UICollectionViewFlowWaterLayout.h */,
+				0C5DDA4E1D2A0EA200F69B2A /* UICollectionViewFlowWaterLayout.m */,
+			);
+			path = Waterfall;
 			sourceTree = "<group>";
 		};
 		8B8CA6581A3214096D662B17 /* Pods */ = {
@@ -537,6 +568,7 @@
 				043FF4A01D27C3D80094096B /* Assets.xcassets in Resources */,
 				043FF50D1D280C8D0094096B /* home_back_top@2x.png in Resources */,
 				043FF50C1D280C8D0094096B /* clothes_detail_like_on@2x.png in Resources */,
+				0C5DDA711D2AA9D500F69B2A /* MatchCell.xib in Resources */,
 				043FF5101D280C8D0094096B /* icon_my_shezhi@2x.png in Resources */,
 				043FF4FD1D280C8D0094096B /* bottom_bbs_icon_on@2x.png in Resources */,
 				043FF4FC1D280C8D0094096B /* bottom_bbs_icon@2x.png in Resources */,
@@ -606,10 +638,12 @@
 				04433ED21D28CA1D00FB8C0E /* IntroductionViewController.m in Sources */,
 				04433ECB1D28C9AE00FB8C0E /* CommunityViewController.m in Sources */,
 				0C5DDA441D29EEE300F69B2A /* CollocationVC.m in Sources */,
+				0C5DDA5A1D2A396300F69B2A /* zMatchNodel.m in Sources */,
 				04433EE21D28CEB300FB8C0E /* RequestClient.m in Sources */,
 				04433EFE1D28D8FC00FB8C0E /* UIView+Extension.m in Sources */,
 				04433EEA1D28D5D400FB8C0E /* BXTabBar.m in Sources */,
 				043FF4981D27C3D80094096B /* AppDelegate.m in Sources */,
+				0C5DDA701D2AA9D500F69B2A /* MatchCell.m in Sources */,
 				04433EF91D28D6AC00FB8C0E /* UIBarButtonItem+Extension.m in Sources */,
 				043FF4951D27C3D80094096B /* main.m in Sources */,
 				04433ED91D28CA4F00FB8C0E /* ShoppingCarViewController.m in Sources */,
@@ -617,6 +651,8 @@
 				04433EFA1D28D6AC00FB8C0E /* UIButton+Extension.m in Sources */,
 				04433EBE1D28C68200FB8C0E /* UILabel+Extension.m in Sources */,
 				04433ECE1D28C9C700FB8C0E /* ManStoreViewController.m in Sources */,
+				0C5DDA5D1D2A39B000F69B2A /* zMatchTool.m in Sources */,
+				0C5DDA4F1D2A0EA200F69B2A /* UICollectionViewFlowWaterLayout.m in Sources */,
 				0C5DDA471D29EF0200F69B2A /* SpecialVC.m in Sources */,
 				04433EE11D28CEB300FB8C0E /* NetRequestClass.m in Sources */,
 				04433EEC1D28D5D400FB8C0E /* BXTabBarButton.m in Sources */,
