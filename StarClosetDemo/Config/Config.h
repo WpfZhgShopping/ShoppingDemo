@@ -76,3 +76,28 @@ typedef void(^CallBackMessageBlock)(id resposeObject);
 
 
 #endif /* Config_h */
+
+//请求头的内容
+#define GC @"gc"
+#define GC_VALUE @"appstore"
+#define GF @"gf"
+#define GF_VALUE @"iphone"
+#define GN @"gn"
+#define GN_VALUE @"mxyc_ip"
+#define GV @"gv"
+#define GV_VALUE @"6.6.3"
+#define GI @"gi"
+#define GI_VALUE @"CBD795AD-1BFC-40FE-A351-407FEAC7219D"
+#define GS @"gs"
+#define GS_VALUE @"640x1136"
+#define GOS @"gos"
+#define GOS_VALUE @"8.4.1"
+#define ACCESS_TOKEN @"access_token"
+#define ACCESS_TOKEN_VALUE @""
+
+
+
+
+
+
+

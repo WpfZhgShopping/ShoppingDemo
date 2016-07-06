@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040E83C01D2B92E90045C34A /* LatestStyleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E83BF1D2B92E90045C34A /* LatestStyleModel.m */; };
+		040E83C21D2BA85C0045C34A /* icon_information_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 040E83C11D2BA85C0045C34A /* icon_information_ok@2x.png */; };
 		043FF4951D27C3D80094096B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 043FF4941D27C3D80094096B /* main.m */; };
 		043FF4981D27C3D80094096B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 043FF4971D27C3D80094096B /* AppDelegate.m */; };
 		043FF49E1D27C3D80094096B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043FF49C1D27C3D80094096B /* Main.storyboard */; };
@@ -62,10 +64,15 @@
 		04467F431D29F42D0067DBC1 /* WPFHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04467F421D29F42D0067DBC1 /* WPFHttpManager.m */; };
 		04467F461D29F8B80067DBC1 /* WTopScrollModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04467F451D29F8B80067DBC1 /* WTopScrollModel.m */; };
 		04467F491D2A35120067DBC1 /* UIPageControl+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04467F481D2A35120067DBC1 /* UIPageControl+Extension.m */; };
+		04467F4C1D2A48DD0067DBC1 /* PromotionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04467F4B1D2A48DD0067DBC1 /* PromotionModel.m */; };
+		04467F4F1D2A83E80067DBC1 /* RegionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04467F4E1D2A83E80067DBC1 /* RegionModel.m */; };
 		4C93F64860360DE2691585DD /* libPods-StarClosetDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C867A9997C5A94F5FE6F65E /* libPods-StarClosetDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040E83BE1D2B92E90045C34A /* LatestStyleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatestStyleModel.h; sourceTree = "<group>"; };
+		040E83BF1D2B92E90045C34A /* LatestStyleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatestStyleModel.m; sourceTree = "<group>"; };
+		040E83C11D2BA85C0045C34A /* icon_information_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_information_ok@2x.png"; sourceTree = "<group>"; };
 		043FF4901D27C3D80094096B /* StarClosetDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarClosetDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		043FF4941D27C3D80094096B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		043FF4961D27C3D80094096B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -151,6 +158,10 @@
 		04467F451D29F8B80067DBC1 /* WTopScrollModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTopScrollModel.m; sourceTree = "<group>"; };
 		04467F471D2A35120067DBC1 /* UIPageControl+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIPageControl+Extension.h"; sourceTree = "<group>"; };
 		04467F481D2A35120067DBC1 /* UIPageControl+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPageControl+Extension.m"; sourceTree = "<group>"; };
+		04467F4A1D2A48DD0067DBC1 /* PromotionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionModel.h; sourceTree = "<group>"; };
+		04467F4B1D2A48DD0067DBC1 /* PromotionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionModel.m; sourceTree = "<group>"; };
+		04467F4D1D2A83E80067DBC1 /* RegionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionModel.h; sourceTree = "<group>"; };
+		04467F4E1D2A83E80067DBC1 /* RegionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionModel.m; sourceTree = "<group>"; };
 		0E5A6FCD65DEF8821DCEFCE2 /* Pods-StarClosetDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarClosetDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarClosetDemo/Pods-StarClosetDemo.release.xcconfig"; sourceTree = "<group>"; };
 		139EB0224ADD056637297118 /* Pods-StarClosetDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarClosetDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StarClosetDemo/Pods-StarClosetDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		4C867A9997C5A94F5FE6F65E /* libPods-StarClosetDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StarClosetDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +264,12 @@
 			children = (
 				04467F441D29F8B80067DBC1 /* WTopScrollModel.h */,
 				04467F451D29F8B80067DBC1 /* WTopScrollModel.m */,
+				04467F4A1D2A48DD0067DBC1 /* PromotionModel.h */,
+				04467F4B1D2A48DD0067DBC1 /* PromotionModel.m */,
+				04467F4D1D2A83E80067DBC1 /* RegionModel.h */,
+				04467F4E1D2A83E80067DBC1 /* RegionModel.m */,
+				040E83BE1D2B92E90045C34A /* LatestStyleModel.h */,
+				040E83BF1D2B92E90045C34A /* LatestStyleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -307,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				04433F071D29522A00FB8C0E /* icon_class_search@2x.png */,
+				040E83C11D2BA85C0045C34A /* icon_information_ok@2x.png */,
 				04433EB71D28BE7B00FB8C0E /* 10.jpg */,
 				04433EB51D28BC2400FB8C0E /* Default@2x.png */,
 				043FF4E21D280C8D0094096B /* bottom_bbs_icon@2x.png */,
@@ -527,6 +545,7 @@
 				043FF5091D280C8D0094096B /* button_pull_like@2x.png in Resources */,
 				043FF4FF1D280C8D0094096B /* bottom_dapei_icon_on@2x.png in Resources */,
 				043FF5051D280C8D0094096B /* bottom_shopping_icon@2x.png in Resources */,
+				040E83C21D2BA85C0045C34A /* icon_information_ok@2x.png in Resources */,
 				04433EB61D28BC2400FB8C0E /* Default@2x.png in Resources */,
 				043FF4FE1D280C8D0094096B /* bottom_dapei_icon@2x.png in Resources */,
 				04433F081D29522A00FB8C0E /* icon_class_search@2x.png in Resources */,
@@ -608,6 +627,7 @@
 				04467F431D29F42D0067DBC1 /* WPFHttpManager.m in Sources */,
 				04467F491D2A35120067DBC1 /* UIPageControl+Extension.m in Sources */,
 				04433EFE1D28D8FC00FB8C0E /* UIView+Extension.m in Sources */,
+				04467F4C1D2A48DD0067DBC1 /* PromotionModel.m in Sources */,
 				04467F401D29F24F0067DBC1 /* WFScrollView.m in Sources */,
 				04433EEA1D28D5D400FB8C0E /* BXTabBar.m in Sources */,
 				043FF4981D27C3D80094096B /* AppDelegate.m in Sources */,
@@ -622,8 +642,10 @@
 				04433EE11D28CEB300FB8C0E /* NetRequestClass.m in Sources */,
 				04433EEC1D28D5D400FB8C0E /* BXTabBarButton.m in Sources */,
 				04433EBB1D28C51600FB8C0E /* UIImage+Extension.m in Sources */,
+				04467F4F1D2A83E80067DBC1 /* RegionModel.m in Sources */,
 				04433EDC1D28CB5300FB8C0E /* MytabBarVC.m in Sources */,
 				04433EEB1D28D5D400FB8C0E /* BXTabBarBigButton.m in Sources */,
+				040E83C01D2B92E90045C34A /* LatestStyleModel.m in Sources */,
 				04433F021D28ECD200FB8C0E /* PersonInfoVC.m in Sources */,
 				04433ED61D28CA2E00FB8C0E /* MatchViewController.m in Sources */,
 				04467F3D1D29EDB10067DBC1 /* SearchVC.m in Sources */,

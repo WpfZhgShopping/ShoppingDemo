@@ -18,8 +18,11 @@
 #import "AFNetworking.h"
 #import "UIView+SDAutoLayout.h"
 #import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 #import "ASIFormDataRequest.h"
 #import "ASIHTTPRequest.h"
+#import "RegionModel.h"
+#import "LatestStyleModel.h"
 #pragma mark - 头文件
 #import "UIImage+Extension.h"
 #import "UILabel+Extension.h"

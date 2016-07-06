@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-
 @interface WPFHttpManager : NSObject
 
 + (void)getMainVCTopScrollViewContent:(void(^)(NSArray *array))complete;
 
++ (void)getPromotionViewContent:(void(^)(NSArray *array))complete;
+
++ (void)getWaterFallViewContent:(void(^)(NSArray *array))complete;
+
++ (void)getNewStyleViewContent:(void(^)(NSArray *array))complete;
 
 @end
