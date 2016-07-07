@@ -10,12 +10,20 @@
 
 typedef void(^myBlock)(NSMutableArray *Array);
 
+typedef void(^tableBlock)(NSMutableArray *Array);
+
+typedef void(^topBlock)(NSMutableArray *Array);
+
 @interface zMatchTool : NSObject
 
 
 
 
 +(void)getWtchMatch:(NSString *)url wtchBlock:(myBlock)block;
+
++(void)getWtchMatch:(NSString *)url wtchtableBlock:(tableBlock)block;
+
++(void)getWtchMatch:(NSString *)url wtchtopBlock:(topBlock)block;
 
 
 @end

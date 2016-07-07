@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MytabBarVC.h"
-
+#import "MatchSQL.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[MatchSQL new] createTableIsTableViewAndCollectView];
     // Override point for customization after application launch.
     
     self.window =[[UIWindow alloc]initWithFrame:kMainBounds];
