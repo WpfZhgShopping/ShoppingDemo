@@ -11,7 +11,6 @@
 #import "WPFHttpManager.h"
 #import "WTopScrollModel.h"
 #import "PromotionModel.h"
-
 typedef enum : NSUInteger {
     //顶部滚动视图
     TopScrollView = 100,
@@ -43,6 +42,8 @@ typedef enum : NSUInteger {
     UITableView *_myTableView;
     float _colHeight;
     UICollectionView *_collectionView;
+    UIView *_headerView;
+    NSInteger index;
 }
 @property (nonatomic,strong) NSMutableArray *topDataArr;
 @property (nonatomic,strong) NSMutableArray *promotionDataArr;
@@ -84,8 +85,12 @@ typedef enum : NSUInteger {
 #pragma mark -视图将要出现时启动定时器
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden=YES;
+    UIView *view =[self.view viewWithTag:20];
+    [view removeFromSuperview];
+    [self createNivagationBar];
     [self startTimer];
-
+    [self refreshInfo];
 }
 #pragma mark -视图将要消失时销毁定时器
 - (void)viewWillDisappear:(BOOL)animated {
@@ -97,15 +102,18 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.automaticallyAdjustsScrollViewInsets=NO;
     self.navigationController.navigationBarHidden=YES;
+    UIView *view =[self.view viewWithTag:20];
+    [view removeFromSuperview];
     [self createNivagationBar];
      [self createView];
-    [self getTopScrollViewData];
+    [self getTopScrollViewDataWithBlock:nil];
     speed =0;
-    _colHeight =0;
-   [self getPromotionViewData];
-    [self getBottomViewData];
-    [self getNewStyleData];
+   [self getPromotionViewDataWithBlock:nil];
+    [self getBottomViewDataWithBlock:nil];
+    [self getNewStyleData:1 WithBlock:nil];
+    [self creatNewStyleView];
 }
 
 #pragma mark -创建大滚动视图
@@ -116,69 +124,50 @@ typedef enum : NSUInteger {
     bgScrollView.delegate=self;
     [self.view addSubview:bgScrollView];
     _bgScrollView = bgScrollView;
+    [self refreshInfo];
     
-}
+    }
 
 #pragma mark -获取新款服装的数据
-- (void)getNewStyleData {
+- (void)getNewStyleData:(NSInteger)tag WithBlock:(void(^)(void))block{
+    [self.latestStyleDataArr removeAllObjects];
     __weak NSMutableArray *arr =self.latestStyleDataArr;
-        [WPFHttpManager getNewStyleViewContent:^(NSArray *array) {
-            if (array.count!=0) {
-                [arr addObjectsFromArray:array];
-                [self reloadNewStyleView];
-            }
-        }];
+    [WPFHttpManager getNewStyleViewContent:tag withBlock:^(NSArray *array) {
+        if (array.count!=0) {
+            [arr addObjectsFromArray:array];
+            UICollectionView *collectionView =[_bgScrollView viewWithTag:WaterFallCollectionView];
+            [collectionView reloadData];
+        }
+    }];
 }
 
 #pragma mark -刷新最新款服饰视图
-- (void)reloadNewStyleView {
-
-    UICollectionViewFlowLayout *layout =[[UICollectionViewFlowLayout alloc]init];
+- (void)creatNewStyleView {
+    XLPlainFlowLayout *layout =[XLPlainFlowLayout new];
+    layout.naviHeight =0;
     layout.scrollDirection =UICollectionViewScrollDirectionVertical;
-    UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0,4010, kMainBoundsW, kMainBoundsH) collectionViewLayout:layout];
+    UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0,585*6+490, kMainBoundsW, kMainBoundsH) collectionViewLayout:layout];
     collectionView.delegate= self;
     collectionView.dataSource =self;
     collectionView.tag=WaterFallCollectionView;
-    collectionView.backgroundColor =[UIColor redColor];
+    collectionView.backgroundColor =[UIColor lightGrayColor];
     collectionView.scrollEnabled=NO;
+    collectionView.backgroundColor =[UIColor greenColor];
+    _collectionView.scrollsToTop=YES;
     [_bgScrollView addSubview:collectionView];
+    
     _collectionView =collectionView;
     [collectionView registerClass: [UICollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentify"];
-_bgScrollView.contentSize=CGSizeMake(0, _topScrollView.frame.size.height+_bgView.frame.size.height+_myTableView.contentSize.height+_collectionView.contentSize.height);
-}
-
-
-#pragma mark -获取各国馆的视图数据
-- (void)getBottomViewData {
+    [collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentify"];
     
-    __weak NSMutableArray *arr =self.regionDataArr;
-    [WPFHttpManager getWaterFallViewContent:^(NSArray *array) {
-        [arr addObjectsFromArray:array];
-        NSLog(@"ddddd%ld",arr.count);
-        dispatch_async(dispatch_get_main_queue(), ^{
-           [self reloadVenuesView];
-        });
-    }];
+    _bgScrollView.contentSize=CGSizeMake(0, 490+_myTableView.contentSize.height+_collectionView.contentSize.height);
+    
 }
-#pragma mark -刷新各国馆视图
-- (void)reloadVenuesView {
- _bgScrollView.contentSize=CGSizeMake(0, 7000);
-    UITableView *myTableView =[[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_bgView.frame)+10, kMainBoundsW, kMainBoundsH) style:UITableViewStyleGrouped];
-    myTableView.autoresizesSubviews = NO;
-    myTableView.delegate=self;
-    myTableView.dataSource =self;
-    myTableView.tag =BottomTableView;
-    [_bgScrollView addSubview:myTableView];
-    _myTableView = myTableView;
-    myTableView.showsHorizontalScrollIndicator=NO;
-    myTableView.scrollEnabled=NO;
-    myTableView.backgroundColor =[UIColor greenColor];
-    [_myTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    NSLog(@"-==%f",_myTableView.contentSize.height);
-}
+
 
 #pragma mark -获取限时购视图数据
-- (void)getPromotionViewData {
+- (void)getPromotionViewDataWithBlock:(void(^)(void))block{
+    [self.promotionDataArr removeAllObjects];
     __weak NSMutableArray *arr = self.promotionDataArr;
     [WPFHttpManager getPromotionViewContent:^(NSArray *array) {
         if (array.count !=0) {
@@ -190,29 +179,59 @@ _bgScrollView.contentSize=CGSizeMake(0, _topScrollView.frame.size.height+_bgView
 
 #pragma mark -刷新限时购视图
 - (void)reloadPromotionView {
-        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 250, kMainBoundsW, 230)];
-        for (int i=0; i<2; i++) {
-            PromotionModel *model =self.promotionDataArr[i];
-            UIButton *button =[UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame=CGRectMake(10+(i%2)*(kMainBoundsW-10)/2, 0, (kMainBoundsW-30)/2, bgView.frame.size.height);
-            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.img_index] forState:UIControlStateNormal];
-            [button addTarget:self action:@selector(GoodsDetail:)];
-            [bgView addSubview:button];
-        }
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 250, kMainBoundsW, 230)];
+    for (int i=0; i<2; i++) {
+        PromotionModel *model =self.promotionDataArr[i];
+        UIButton *button =[UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame=CGRectMake(10+(i%2)*(kMainBoundsW-10)/2, 0, (kMainBoundsW-30)/2, bgView.frame.size.height);
+        [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.img_index] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(GoodsDetail:)];
+        [bgView addSubview:button];
+    }
     [_bgScrollView addSubview:bgView];
     _bgView=bgView;
-
+    
 }
 
 - (void)GoodsDetail:(UIButton*)sender {
-
-
+    
+    
 }
 
 
+#pragma mark -获取各国馆的视图数据
+- (void)getBottomViewDataWithBlock:(void(^)(void))block {
+    [self.regionDataArr removeAllObjects];
+    __weak NSMutableArray *arr =self.regionDataArr;
+    [WPFHttpManager getWaterFallViewContent:^(NSArray *array) {
+        [arr addObjectsFromArray:array];
+        dispatch_async(dispatch_get_main_queue(), ^{
+           [self createVenuesView];
+        });
+    }];
+}
+#pragma mark -刷新各国馆视图
+- (void)createVenuesView {
+ _bgScrollView.contentSize=CGSizeMake(0, 7000);
+    UITableView *myTableView =[[UITableView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_bgView.frame)+10, kMainBoundsW, kMainBoundsH) style:UITableViewStyleGrouped];
+    myTableView.autoresizesSubviews = NO;
+    myTableView.delegate=self;
+    myTableView.dataSource =self;
+    myTableView.tag =BottomTableView;
+    myTableView.backgroundColor =[UIColor blueColor];
+    [_bgScrollView addSubview:myTableView];
+    _myTableView = myTableView;
+    myTableView.showsHorizontalScrollIndicator=NO;
+    myTableView.scrollEnabled=NO;
+    [_myTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    NSLog(@"-==%f",_myTableView.contentSize.height);
+
+}
+
 #pragma mark -获取顶部滚动视图的数据
-- (void)getTopScrollViewData {
+- (void)getTopScrollViewDataWithBlock:(void(^)(void))block {
  
+    [self.topDataArr removeAllObjects];
     __block NSMutableArray * arr = self.topDataArr;
     [WPFHttpManager getMainVCTopScrollViewContent:^(NSArray *array) {
         if (array.count !=0) {
@@ -221,6 +240,7 @@ _bgScrollView.contentSize=CGSizeMake(0, _topScrollView.frame.size.height+_bgView
         }
     }];
 }
+
 
 #pragma mark -刷新顶部滚动视图
 - (void)reloadScrollView {
@@ -249,14 +269,13 @@ _bgScrollView.contentSize=CGSizeMake(0, _topScrollView.frame.size.height+_bgView
     UIPageControl *pageControl = [UIPageControl createPageControlWithFrame:CGRectMake(0, 230, kMainBoundsW, 10) numberOfPages:self.topDataArr.count pageIndicatorTintColor:[UIColor redColor] currentPageIndicatorTintColor:[UIColor blueColor]];
     [_bgScrollView addSubview:pageControl];
     _pageControl =pageControl;
+    
 }
 
 
 - (void)startTimer {
  NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoChangePage) userInfo:nil repeats:YES];
     _timer = timer;
-//    [[NSRunLoop currentRunLoop]addTimer:timer forMode:NSRunLoopCommonModes];
-//    [[NSRunLoop currentRunLoop]run];
 }
 - (void)autoChangePage {
     speed++;
@@ -278,35 +297,35 @@ _bgScrollView.contentSize=CGSizeMake(0, _topScrollView.frame.size.height+_bgView
                    }
          _pageControl.currentPage =scrollView.contentOffset.x/kMainBoundsW-1;
     }
-    
     if (scrollView.tag ==BackgroundScrollView) {
-//        NSLog(@"dddddddddddddfddd");
         UITableView *tableView = [scrollView viewWithTag:BottomTableView];
         if (scrollView.contentOffset.y<=490) {
             tableView.contentOffset=CGPointMake(0, 0);
             tableView.frame=CGRectMake(0, 490, kMainBoundsW, kMainBoundsH);
             return;
-        }else if(scrollView.contentOffset.y>490 && scrollView.contentOffset.y<=580*(self.regionDataArr.count)){
+        }
+            if(scrollView.contentOffset.y>490 && scrollView.contentOffset.y<=585*6+490-kMainBoundsH){
             tableView.center =CGPointMake(tableView.center.x, scrollView.contentOffset.y+self.view.center.y);
             CGPoint offset = CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y-490);
-            
+            _collectionView.frame=CGRectMake(0, 585*6+490, kMainBoundsW, kMainBoundsH);
+//                [_bgScrollView bringSubviewToFront:_collectionView];
             tableView.contentOffset = offset;
-       }
-            else
+//               KSLog(@"AAA%@---%@",NSStringFromCGRect(_myTableView.frame),NSStringFromCGRect(_collectionView.frame));
+        }
+            if (scrollView.contentOffset.y>3257)
         {
-//            [_bgScrollView bringSubviewToFront:_collectionView];
+            _myTableView.center = CGPointMake(tableView.center.x, _myTableView.center.y);
+            _collectionView.center =CGPointMake(_collectionView.center.x,3257+kMainBoundsH+kMainBoundsH/2);
+//KSLog(@"BBB%@---%@",NSStringFromCGRect(_myTableView.frame),NSStringFromCGRect(_collectionView.frame));
         }
         
-        KSLog(@"------%f",scrollView.contentOffset.y);
+//        KSLog(@"------%f",scrollView.contentOffset.y);
         }
-    
-    
-    
-    
-    
-    
-    
-    
+    if (scrollView.contentOffset.y>=3992) {
+        _collectionView.center = CGPointMake(self.view.center.x, scrollView.contentOffset.y+self.view.center.y);
+        CGPoint offset =CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y-3992);
+        _collectionView.contentOffset=offset;
+    }
     
 }
 
@@ -361,7 +380,6 @@ _bgScrollView.contentSize=CGSizeMake(0, _topScrollView.frame.size.height+_bgView
     [cell.contentView addSubview:backView];
     RegionModel *model =self.regionDataArr[indexPath.section];
     switch (indexPath.row) {
-       
         case 0:
         {
             UIScrollView *brandScorllView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kMainBoundsW, backView.frame.size.height)];
@@ -436,9 +454,6 @@ _bgScrollView.contentSize=CGSizeMake(0, _topScrollView.frame.size.height+_bgView
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
        UIButton *topBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     topBtn.frame= CGRectMake(0, 0, kMainBoundsW, 80);
-    
-    NSLog(@"-------->%ld",self.regionDataArr.count);
-    
     RegionModel *model =self.regionDataArr[section];
         [topBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[model.nameArr firstObject]] forState:UIControlStateNormal];
     return topBtn;
@@ -462,49 +477,158 @@ _bgScrollView.contentSize=CGSizeMake(0, _topScrollView.frame.size.height+_bgView
     UIView *diskView =[[UIView alloc]initWithFrame:cell.contentView.frame];
     [cell.contentView addSubview:diskView];
     WPFGoodsModel *obj =self.latestStyleDataArr[indexPath.row];
-    NSLog(@">>>>>>>>>>%@",obj.model.picUrl);
     UIButton* button =[UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame=CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height*3/4);
+    button.frame=CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height*18/28.0);
     NSString *picStr =[[obj.model.picUrl componentsSeparatedByString:@"?"]firstObject];
     [button sd_setBackgroundImageWithURL:[NSURL URLWithString:picStr] forState:UIControlStateNormal];
     [diskView addSubview:button];
 
-    UIImageView *countryImage =[[UIImageView alloc]initWithFrame:CGRectMake(5, CGRectGetMaxY(button.frame), cell.frame.size.height/16, cell.frame.size.height/16)];
+    UIImageView *countryImage =[[UIImageView alloc]initWithFrame:CGRectMake(5, CGRectGetMaxY(button.frame)+10, cell.frame.size.height*1/28, cell.frame.size.height*1/28)];
     [countryImage sd_setImageWithURL:[NSURL URLWithString:obj.model.nationalFlag] placeholderImage:[UIImage imageNamed:@"icon_information_ok"]];
     [diskView addSubview:countryImage];
     
-    UILabel *countryLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(countryImage.frame), CGRectGetMaxY(button.frame), cell.frame.size.height/16, cell.frame.size.height/16)];
+    UILabel *countryLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(countryImage.frame), CGRectGetMaxY(button.frame), cell.frame.size.width-CGRectGetMaxX(countryImage.frame), cell.frame.size.height*3/28)];
     countryLabel.text=obj.model.country;
     countryLabel.font =[UIFont systemFontOfSize:12];
     [diskView addSubview:countryLabel];
     
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(countryImage.frame), CGRectGetMaxY(countryLabel.frame), cell.frame.size.width-10, cell.frame.size.height/8)];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(countryImage.frame), CGRectGetMaxY(countryLabel.frame), cell.frame.size.width-10, cell.frame.size.height*3/28)];
     titleLabel.text =obj.model.descrip;
     [diskView addSubview:titleLabel];
     
-//    UILabel *priceLabel = [UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(countryImage.frame), CGRectGetMaxY(titleLabel.frame), cell.frame.size.width, cell.frame.size.height)
+    UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(countryImage.frame), CGRectGetMaxY(titleLabel.frame), cell.frame.size.width, cell.frame.size.height*4/28)];
+    NSString *str =[NSString stringWithFormat:@"¥%@ ¥%@",obj.model.price,obj.model.origin_price];
+    priceLabel.attributedText =[self setTextStyleWith:str with:obj.model.price.length+1 with:obj.model.origin_price.length+2];
+    [diskView addSubview:priceLabel];
+    
+    
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    WPFGoodsModel *model =self.latestStyleDataArr[indexPath.row];
-//    CGFloat height =[model.height floatValue];
-//    CGFloat width =[model.width floatValue];
-    
-    return CGSizeMake((kMainBoundsW-10)/2, 200);
+    return CGSizeMake((kMainBoundsW-10)/2, 280);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     return CGSizeMake(kMainBoundsW, 100);
 }
 
+- (UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+
+    UICollectionReusableView *reuseView =[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentify" forIndexPath:indexPath];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSArray *titleArr =@[@"今日上新",@"上装",@"裙装",@"裤装"];
+        for (UIView *view in reuseView.subviews) {
+            [view removeFromSuperview];
+        }
+        UIView* view =[[UIView alloc]initWithFrame:reuseView.frame];
+        for (int i=0; i<4; i++) {
+            UIButton* button =[UIButton buttonWithType:UIButtonTypeSystem];
+            button.frame=CGRectMake(kMainBoundsW/4*i, 20, kMainBoundsW/4, 60);
+            [button setTitle:titleArr[i] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];//设置button上label的字体颜色
+            button.tag=i+1;
+            [button addTarget:self action:@selector(changeDress:) forControlEvents:UIControlEventTouchUpInside];
+            view.backgroundColor=[UIColor whiteColor];
+            [view insertSubview:button atIndex:i];
+        }
+        
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"矩形-15-副本-4"]];
+        imageView.frame=CGRectMake(0, 80, kMainBoundsW, 1);
+        [view addSubview:imageView];
+        UILabel *label =[[UILabel alloc]initWithFrame:CGRectMake(0, 78, kMainBoundsW/4, 2)];
+        label.backgroundColor =[UIColor redColor];
+        label.tag=10;
+        [view addSubview:label];
+        _headerView =view;
+        [reuseView addSubview:view];
+
+    });
+    
+    
+    return reuseView;
+}
+
+- (void)changeDress: (UIButton *)sender {
+   
+    UILabel *label =[_headerView viewWithTag:10];
+    label.frame=CGRectMake(kMainBoundsW/4*(sender.tag-1), 78, kMainBoundsW/4, 2);
+       switch (sender.tag) {
+        case 1:
+           {
+               index=1;
+               [self getNewStyleData:1 WithBlock:nil];
+              
+           }
+            break;
+        case 2:
+           {
+               index=2;
+            [self getNewStyleData:2 WithBlock:nil];
+            break;
+           }
+        case 3:
+           {
+               index=3;
+            [self getNewStyleData:3 WithBlock:nil];
+            break;
+           }
+        case 4:
+           {
+               index=4;
+            [self getNewStyleData:4 WithBlock:nil];
+            break;
+           }
+        default:
+            break;
+    }
+}
 
 
 
+
+#pragma mark -下拉刷新
+- (void)refreshInfo {
+  
+    _bgScrollView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getTopScrollViewDataWithBlock:nil];
+        [self getPromotionViewDataWithBlock:nil];
+        [self getNewStyleData:1 WithBlock:nil];
+         [_bgScrollView.mj_header endRefreshing];
+    }];
+
+       [_bgScrollView.mj_header beginRefreshing];
+
+    _collectionView.mj_footer =[MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self getNewStyleData:index WithBlock:^{
+            [WPFHttpManager getNewStyleViewContent:index withBlock:^(NSArray *array) {
+                [_latestStyleDataArr addObjectsFromArray:array];
+                [_collectionView reloadData];
+            }];
+        }];
+        _bgScrollView.contentSize =CGSizeMake(kMainBoundsW, 3257+_collectionView.contentSize.height);
+        [_collectionView.mj_footer endRefreshing];
+    }];
+    
+}
+
+#pragma mark -富文本
+- (NSMutableAttributedString *)setTextStyleWith:(NSString*)str with:(NSInteger)range1 with:(NSInteger)range2{
+    NSMutableAttributedString * attributeStr=[[NSMutableAttributedString alloc]initWithString:str];
+    [attributeStr addAttribute:NSForegroundColorAttributeName value: BXColor(255, 75, 65) range:NSMakeRange(0, range1)];
+    [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(0, range1)];
+    [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13] range:NSMakeRange(range1, range2)];
+     [attributeStr addAttribute:NSForegroundColorAttributeName value:BXColor(255, 75, 65) range:NSMakeRange(range1, range2)];
+    return attributeStr;
+}
 
 #pragma mark -自定义导航条
 - (void)createNivagationBar{
     UIView * bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kMainBoundsW, 64)];
+    bgView.backgroundColor =[UIColor whiteColor];
+    bgView.tag=20;
     [self.view addSubview:bgView];
     
     UIButton* leftBtn =[UIButton buttonWithType:UIButtonTypeCustom];

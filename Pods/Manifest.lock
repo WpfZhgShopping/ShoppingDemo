@@ -28,6 +28,7 @@ PODS:
   - ASIHTTPRequest/S3 (1.8.2):
     - ASIHTTPRequest/Core
   - GCJSONKit (1.5.0)
+  - Masonry (1.0.1)
   - MJRefresh (3.1.7)
   - Reachability (3.2)
   - SDAutoLayout (2.1.1)
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - AFNetworking
   - ASIHTTPRequest
   - GCJSONKit
+  - Masonry
   - MJRefresh
   - SDAutoLayout
   - SDWebImage
@@ -47,11 +49,12 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
   GCJSONKit: 8ad0067945efd217af8e610fa09ca0d02283b36b
+  Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
   MJRefresh: f67f0750d57a4e4ae433da549359ca53b52cdc7d
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDAutoLayout: c18678b6ae28c67d89cb132e770cfbac9ee20d25
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
-PODFILE CHECKSUM: 5954b3048e606378c915bde976cd8f0f3497661b
+PODFILE CHECKSUM: f4e55f2e38260d141b06aee2bbc8182e5253aefd
 
 COCOAPODS: 1.0.1

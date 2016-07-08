@@ -64,7 +64,7 @@
                 NSDictionary *dic =responseObject[@"data"];
                 RegionModel *model =[[RegionModel alloc]initWithRegionModel:dic];
                 [resultArr addObject:model];
-                if (i==6 &&complete) {
+                if (resultArr.count==6 &&complete) {
                     complete(resultArr);
                 }
             }];
@@ -73,13 +73,16 @@
     }
 }
 
-+ (void)getNewStyleViewContent:(void(^)(NSArray *array))complete {
++ (void)getNewStyleViewContent:(NSInteger)tag withBlock:(void(^)(NSArray *array))complete {
 
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer =[AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes =[NSSet setWithObject:@"application/json"];
-    [manager GET:@"http://api-v2.mall.hichao.com/sku/list" parameters:@{@"more_items":@"1",@"type":@"selection",@"flag":@"",GC:GC_VALUE,GF:GF_VALUE,GN:GN_VALUE,GV:GV_VALUE,GI:GI_VALUE,GS:GS_VALUE,GOS:GOS_VALUE,ACCESS_TOKEN:ACCESS_TOKEN_VALUE} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSArray *httpArr =@[@"http://api-v2.mall.hichao.com/sku/list?more_items=1&type=selection&flag=&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=CBD795AD-1BFC-40FE-A351-407FEAC7219D&gs=640x1136&gos=8.4.1&access_token=",@"http://api-v2.mall.hichao.com/sku/list?more_items=1&type=selection&flag=&category_ids=38,33,34&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=CBD795AD-1BFC-40FE-A351-407FEAC7219D&gs=640x1136&gos=8.4.1&access_token=",@"http://api-v2.mall.hichao.com/sku/list?more_items=1&type=selection&flag=&category_ids=39,40&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=CBD795AD-1BFC-40FE-A351-407FEAC7219D&gs=640x1136&gos=8.4.1&access_token=",@"http://api-v2.mall.hichao.com/sku/list?more_items=1&type=selection&flag=&category_ids=49,45,48,46,44&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=CBD795AD-1BFC-40FE-A351-407FEAC7219D&gs=640x1136&gos=8.4.1&access_token="];
+    
+    
+    [manager GET:httpArr[tag-1] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         NSDictionary *dic1 =dic[@"data"];
         NSArray *itemArr = dic1[@"items"];
@@ -98,15 +101,55 @@
     
 }
 
++ (void)getCommunityTopScrollViewContent:(void(^)(NSArray *array))complete {
+    [NetRequestClass netRequestGETWithRequestURL:@"http://api-v2.mall.hichao.com/forum/banner?gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=CBD795AD-1BFC-40FE-A351-407FEAC7219D&gs=640x1136&gos=8.4.1&access_token=" WithParameter:nil WithReturnValeuBlock:^(NSDictionary *responseObject, NSError *error) {
+        NSDictionary *dic =responseObject[@"data"];
+        NSArray *itemsArr =dic[@"items"];
+        NSMutableArray * resultArr =[NSMutableArray array];
+        for (NSDictionary *tempDic in itemsArr) {
+            NSDictionary *componentDic =tempDic[@"component"];
+            WcomponentModel *model =[[WcomponentModel alloc]initWithComponentModel:componentDic];
+            [resultArr addObject:model];
+        }
+        if (complete) {
+            complete(resultArr);
+        }
+    }];
+}
+
++ (void)getBtnTitle:(void(^)(NSArray *array))complete {
+    [NetRequestClass netRequestGETWithRequestURL:@"http://api-v2.mall.hichao.com/forum/navigator?gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=CBD795AD-1BFC-40FE-A351-407FEAC7219D&gs=640x1136&gos=8.4.1&access_token=" WithParameter:nil WithReturnValeuBlock:^(id responseObject, NSError *error) {
+        NSDictionary *dataDic =responseObject[@"data"];
+        NSArray *itemsArr = dataDic[@"items"];
+        NSMutableArray *resultArr =[NSMutableArray array];
+        for (NSDictionary *tempDic in itemsArr) {
+            WTitleModel *model =[[WTitleModel alloc]initWTitleModelWith:tempDic];
+            [resultArr addObject:model];
+        }
+        if (complete) {
+            complete(resultArr);
+        }
+    }];
+}
 
 
++ (void)getCommunityTableViewContent:(void(^)(NSArray *array))complete {
 
+    [NetRequestClass netRequestGETWithRequestURL:@"http://api-v2.mall.hichao.com/forum/timeline?nav_id=5&nav_name=%E7%83%AD%E9%97%A8&flag=&user_id=&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=CBD795AD-1BFC-40FE-A351-407FEAC7219D&gs=640x1136&gos=8.4.1&access_token=" WithParameter:nil WithReturnValeuBlock:^(id responseObject, NSError *error) {
+//        NSLog( @">>>>>>>>>+++>>>>%@",responseObject);
+        NSDictionary *dataDic =responseObject[@"data"];
+        NSMutableArray *resultArr =[NSMutableArray array];
+        NSArray *itemsArr =dataDic[@"items"];
+        for (NSDictionary *tempDic in itemsArr) {
+            WHotContentModel *obj =[[WHotContentModel alloc]initWHotContentModelWith:tempDic[@"component"]];
+            [resultArr addObject:obj];
+        }
+        if (complete) {
+            complete(resultArr);
+        }
+    }];
 
-
-
-
-
-
+}
 
 
 

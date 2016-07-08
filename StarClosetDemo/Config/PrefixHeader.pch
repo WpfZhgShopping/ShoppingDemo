@@ -23,6 +23,7 @@
 #import "ASIHTTPRequest.h"
 #import "RegionModel.h"
 #import "LatestStyleModel.h"
+#import "MJRefresh.h"
 #pragma mark - 头文件
 #import "UIImage+Extension.h"
 #import "UILabel+Extension.h"
@@ -32,4 +33,13 @@
 #import "UIFont+Extension.h"
 #import "UIView+Extension.h"
 #import "UIPageControl+Extension.h"
+#import "WPFHttpManager.h"
+#import "WTopScrollModel.h"
+#import "WTitleModel.h"
+#import "Masonry.h"
+#import "WHotContentModel.h"
+#import "Tool.h"
+#import "HotCell.h"
+#import "XLPlainFlowLayout.h"
+#import "SDCycleScrollView.h"
 
